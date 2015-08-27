@@ -1,6 +1,12 @@
 module.exports = function(grunt){
 
     grunt.initConfig({
+        env: {
+            dev: {
+                // one of the tests depends on having a non-UTC timezone as local
+                TZ: "Europe/Sofia"
+            }
+        },
         jshint: {
             dist: {
                 options: {
@@ -38,7 +44,8 @@ module.exports = function(grunt){
 
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-env');
 
-    grunt.registerTask("test", "Lint and test", ["jshint", "jasmine"]);
+    grunt.registerTask("test", "Lint and test", ["env:dev", "jshint", "jasmine"]);
 
 };
