@@ -33,11 +33,7 @@ module.exports = function(grunt){
                     'bower_components/jquery/dist/jquery.min.js'
                 ],
                 specs: [
-                    'test/getOrdinal.js',
-                    'test/getDateFromString.js',
-                    'test/parseLink.js',
-                    'test/pluralize.js',
-                    'test/strip_html.js'
+                    'test/*'
                 ]
             }
         }
