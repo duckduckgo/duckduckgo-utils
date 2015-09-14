@@ -441,6 +441,12 @@
             // remove the first link, return the remaining *text*
             $firstLink.remove();
             result = $tmp_p.text();
+            // trim + strip any leading punctuation:
+            result = result.trim();
+            if (result[0] && result[0].match(/\-|\:|\;/)) {
+                result = result.substr(1, result.length);
+            }
+            result = result.trim();
         } else if (wanted === "url") {
             result = $firstLink[0].href;
         }
