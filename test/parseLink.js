@@ -7,7 +7,9 @@ describe('DDG.parse_link', function() {
         ['<b>foobar</b>', 'rest', 'foobar'],
         ['foo <a href="http://foobar.com">bars</a>', 'text', 'bars'],
         ['<a href="http://foobar.com">bars</a>foo<a href="http://foobar.com">bars</a>', 'rest', 'foobars'],
-        ['<a href="http://foobar.com">blah</a> - something', 'rest', 'something']
+        ['<a href="http://foobar.com">blah</a> - something', 'rest', 'something'],
+        ['<a href="http://foobar.com">blah</a>, something', 'rest', 'something'],
+        ['"<a href="http://foobar.com">blah</a>" something', 'rest', 'something']
     ];
 
     tests.forEach(function(test) {
