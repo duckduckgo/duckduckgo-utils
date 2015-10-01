@@ -443,7 +443,7 @@
             result = $tmp_p.text();
             if (result) {
                 // trim + strip any leading punctuation:
-                result = result.replace(/^ ?(\-|\:|\;|,|"\s?") ?/,'');
+                result = result.replace(/^(\-|\:|\;|,|"|'|\s)+/,'');
             }
         } else if (wanted === "url") {
             result = $firstLink[0].href;
