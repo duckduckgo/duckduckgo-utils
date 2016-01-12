@@ -1,5 +1,7 @@
 module.exports = function(grunt){
 
+    var PORT = 9001;
+
     grunt.initConfig({
         env: {
             dev: {
@@ -7,6 +9,17 @@ module.exports = function(grunt){
                 TZ: "Europe/Sofia"
             }
         },
+
+        // one of the tests requires this to not be served on the file:// protocol
+        connect: {
+            server: {
+                options: {
+                    port: PORT,
+                    base: ""
+                }
+            }
+        },
+
         jshint: {
             dist: {
                 options: {
@@ -34,15 +47,22 @@ module.exports = function(grunt){
                 ],
                 specs: [
                     'test/*'
-                ]
+                ],
+                host: "http://localhost:" + PORT + "/"
             }
         }
     });
 
+    grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-env');
 
-    grunt.registerTask("test", "Lint and test", ["env:dev", "jshint", "jasmine"]);
+    grunt.registerTask("test", "Lint and test", [
+        "env:dev",
+        "jshint",
+        "connect:server",
+        "jasmine"
+    ]);
 
 };
