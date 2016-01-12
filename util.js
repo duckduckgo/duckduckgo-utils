@@ -352,7 +352,11 @@
      * @return {boolean}
      */
     DDG.isInternalURL = function (url) {
-        return !url || url.indexOf('http') == -1;
+        var loc = window.location;
+
+        return !url ||
+            url.indexOf('http') === -1 ||
+            url.indexOf(loc.protocol + "//" + loc.hostname + ":" + loc.port) === 0;
     };
 
     /**

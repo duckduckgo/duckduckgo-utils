@@ -4,7 +4,8 @@ describe('DDG.isInternalURL()', function() {
             "/about",
             "/?q=foo",
             "#",
-            "javascript:"
+            "javascript:",
+            window.location.href
         ],
         externalURLs = [
             "https://example.com",
