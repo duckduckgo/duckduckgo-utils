@@ -352,11 +352,9 @@
      * @return {boolean}
      */
     DDG.isInternalURL = function (url) {
-        var loc = window.location;
-
         return !url ||
-            url.indexOf('http') === -1 ||
-            url.indexOf(loc.protocol + "//" + loc.hostname + ":" + loc.port) === 0;
+            url.indexOf('http') == -1 ||
+            /^https?:\/\/([a-z\-0-9]+\.)?duckduckgo.com/.test(url);
     };
 
     /**

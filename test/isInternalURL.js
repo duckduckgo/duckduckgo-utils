@@ -5,11 +5,16 @@ describe('DDG.isInternalURL()', function() {
             "/?q=foo",
             "#",
             "javascript:",
-            window.location.href
+            "http://duckduckgo.com/",
+            "http://duckduckgo.com/spread",
+            "https://duckduckgo.com/?q=foo",
+            "https://ddh2.duckduckgo.com/?q=foo"
         ],
         externalURLs = [
             "https://example.com",
-            "http://example.com"
+            "http://example.com",
+            "http://example.com/?foo=duckduckgo.com",
+            "http://example.com/duckduckgo.com"
         ];
 
     internalURLs.forEach(function (url) {
