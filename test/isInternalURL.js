@@ -3,6 +3,7 @@ describe('DDG.isInternalURL()', function() {
     var internalURLs = [
             null,
             "",
+            "/",
             "/about",
             "/?q=foo",
             "#",
