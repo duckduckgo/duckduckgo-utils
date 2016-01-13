@@ -352,7 +352,9 @@
      * @return {boolean}
      */
     DDG.isInternalURL = function (url) {
-        return !url || url.indexOf('http') == -1;
+        return !url ||
+            url.indexOf('http') == -1 ||
+            /^https?:\/\/([a-z\-0-9]+\.)?duckduckgo.com/.test(url);
     };
 
     /**
