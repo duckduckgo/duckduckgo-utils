@@ -255,6 +255,7 @@
     DDG.getImageProxyURL = function (url, dontEncode) {
         if (DDG.isInternalURL(url)) { return url; }
         url = (dontEncode) ? url : encodeURIComponent(url);
+        if (url.match(/^\/\//)) { url = window.location.protocol + url; }
         return DDG.services.getURL('images') + "?u=" + url + "&f=1";
     };
 
