@@ -11,13 +11,16 @@ describe('DDG.isInternalURL()', function() {
             "http://duckduckgo.com/",
             "http://duckduckgo.com/spread",
             "https://duckduckgo.com/?q=foo",
-            "https://ddh2.duckduckgo.com/?q=foo"
+            "https://ddh2.duckduckgo.com/?q=foo",
+            "//duckduckgo.com/foo.png",
+            "//images.duckduckgo.com/foo.png"
         ],
         externalURLs = [
             "https://example.com",
             "http://example.com",
             "http://example.com/?foo=duckduckgo.com",
-            "http://example.com/duckduckgo.com"
+            "http://example.com/duckduckgo.com",
+            "//example.com/foo.png"
         ];
 
     internalURLs.forEach(function (url) {
