@@ -640,4 +640,20 @@
         return url && url.replace(/^https/, "http");
     };
 
+    /**
+     * Unescapes HTML entities so the text in which they appear can be displayed as text of DOM elements
+     * 
+     * This implementation is as suggested by the MDN:
+     * https://developer.mozilla.org/en-US/Add-ons/Code_snippets/HTML_to_DOM
+     *
+     * @param {String} html foto escape entities
+     * 
+     * @return {String}
+     */
+    DDG.unescape = function(text) {
+        var doc = document.implementation.createHTMLDocument("example");
+        doc.documentElement.innerHTML = text;
+        return doc.body.textContent;
+    };
+
 })(this);
