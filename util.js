@@ -222,7 +222,7 @@
         var domain, url, re, reArr, customFavicon, pixels, variant = '',
             isDarkBg = DDG.settings && DDG.settings.updater && DDG.settings.updater.isDarkBg,
             // we have custom icons for these domains
-            faviconDomains = /wikipedia|amazon|youtube|yelp|apple|vimeo|metrolyrics|spotify|wolfram|metrolyrics|wordnik|brainyquote|soundcloud/;
+            faviconDomains = /wikipedia|amazon|youtube|yelp|apple|vimeo|metrolyrics|spotify|wolfram|metrolyrics|wordnik|brainyquote|soundcloud/,
             darkVariants = /wikipedia/; // icons sets that have a version for dark backgrounds
 
         re = /^.*?\/\/([^\/\?\:\#]+)/;
