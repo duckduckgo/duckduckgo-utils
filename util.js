@@ -238,6 +238,7 @@
         if (customFavicon) {
             // validate domain
             customFavicon = customFavicon.toString();
+            // if the string matches a favicon domain, remove the TLD (.com) and ensure we match on the domain name only.
             tokens = sourceUrl.split('.');
             domainMatch = (tokens.length > 1) ? (tokens[tokens.length - 2] === customFavicon) : true;
           
