@@ -224,7 +224,7 @@
             faviconDomains = /wikipedia|amazon|youtube|yelp|apple|vimeo|metrolyrics|spotify|wolfram|metrolyrics|wordnik|brainyquote|soundcloud/,
             darkVariants = /wikipedia/; // icons sets that have a version for dark backgrounds
 
-        // match on the image name of URL e.g. http://example.jpg?id=123 matches on example.jpg.
+        // match on the domain name + TLD of domain e.g. http://example.com?id=123 matches on example.com.
         re = /^.*?\/\/([^\/\?\:\#]+)/;
         reArr = re.exec(sourceUrl);
         if (reArr && $.isArray(reArr)) {
