@@ -244,7 +244,7 @@
           
             if (domainMatch) {
                 // check for dark background & available variant
-                if (DDG.settings && DDG.settings.get('kae') === 'd' && darkVariants.test(customFavicon)) {
+                if (DDG.settings && DDG.settings && DDG.settings.updater && DDG.settings.updater.isDarkBg && darkVariants.test(customFavicon)) {
                     variant = '.white';
                 }
                 pixels = DDG.is3x ? '.3x' : DDG.is2x ? '.2x' : '';
