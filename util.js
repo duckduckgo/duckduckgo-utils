@@ -219,12 +219,12 @@
     DDG.get_favicon_url = function(sourceUrl) {
         if (!sourceUrl || typeof sourceUrl !== "string") { return; }
         
-        var domain, url, re, reArr, customFavicon, pixels, variant = '',
-            isDarkBg = DDG.settings && DDG.settings.updater && DDG.settings.updater.isDarkBg,
+        var domain, url, re, reArr, customFavicon, pixels, tokens, domainMatch, variant = '', isDarkBg,
             // we have custom icons for these domains
             faviconDomains = /wikipedia|amazon|youtube|yelp|apple|vimeo|metrolyrics|spotify|wolfram|metrolyrics|wordnik|brainyquote|soundcloud/,
             darkVariants = /wikipedia/; // icons sets that have a version for dark backgrounds
 
+        // match on the domain name + TLD of domain e.g. http://example.com?id=123 matches on example.com.
         re = /^.*?\/\/([^\/\?\:\#]+)/;
         reArr = re.exec(sourceUrl);
         if (reArr && $.isArray(reArr)) {
@@ -236,13 +236,21 @@
         customFavicon = domain.match(faviconDomains);
 
         if (customFavicon) {
-            // check for dark background & available variant
-            if (isDarkBg && darkVariants.test(customFavicon)) {
-                variant = '.white';
+            // validate domain
+            customFavicon = customFavicon.toString();
+            // if the string matches a favicon domain, remove the TLD (.com) and ensure we match on the domain name only.
+            tokens = sourceUrl.split('.');
+            domainMatch = (tokens.length > 1) ? (tokens[tokens.length - 2] === customFavicon) : true;
+          
+            if (domainMatch) {
+                // check for dark background & available variant
+                if (DDG.settings && DDG.settings.updater && DDG.settings.updater.isDarkBg && darkVariants.test(customFavicon)) {
+                    variant = '.white';
+                }
+                pixels = DDG.is3x ? '.3x' : DDG.is2x ? '.2x' : '';
+                // we have a custom icon here folks
+                url = '/assets/icons/favicons/'+customFavicon+variant+pixels+'.png';
             }
-            pixels = DDG.is3x ? '.3x' : DDG.is2x ? '.2x' : '';
-            // we have a custom icon here folks
-            url = '/assets/icons/favicons/'+customFavicon+variant+pixels+'.png';
         }
 
         if (!url ) {
