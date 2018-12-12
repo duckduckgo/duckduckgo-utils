@@ -26,10 +26,10 @@ describe('DDG.addSearchParam()', function() {
     });
 
     it('should work with various protocols', function() {
-        expect(DDG.addSearchParam('wss://duckduckgo.com?atb=v100-1#main', 'this', 'works'))
+        expect(DDG.addSearchParam('wss://duckduckgo.com/?atb=v100-1#main', 'this', 'works'))
             .toEqual('wss://duckduckgo.com/?atb=v100-1&this=works#main');
 
-        expect(DDG.addSearchParam('ftp://duckduckgo.com?atb=v100-1#main', 'this', 'works'))
+        expect(DDG.addSearchParam('ftp://duckduckgo.com/?atb=v100-1#main', 'this', 'works'))
             .toEqual('ftp://duckduckgo.com/?atb=v100-1&this=works#main');
     });
 
