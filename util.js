@@ -648,6 +648,36 @@
         return url && url.replace(/^https/, "http");
     };
 
+    // IE11 does not support URL API, we have to use the second best thing 
+    var urlParser = document.createElement('a');
+
+    /**
+     * Adds search parameter to given url e.g., adding key "q" with value "test" to "https://duckduckgo.com" returns "http://duckduckgo.com?q=test".
+     *
+     * @param {string} url
+     * @param {string} key
+     * @param {string} value **[optional]** 
+     * 
+     * @return {string}
+     */
+    DDG.addSearchParam = function(url, key, value) {
+        urlParser.href = url;
+    
+        var encodedData = encodeURIComponent(key);
+
+        if (value) {
+            encodedData += '=' + encodeURIComponent(value);
+        }
+    
+        if (urlParser.search.length > 0 && urlParser.search !== '?') {
+            urlParser.search += '&' + encodedData;
+        } else {
+            urlParser.search = '?' + encodedData;
+        }
+    
+        return urlParser.href;
+    };
+
     /**
      * Unescapes HTML entities so the text in which they appear can be displayed as text of DOM elements
      * 
