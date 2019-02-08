@@ -10,7 +10,7 @@
     DDG = env.DDG;
 
     /**
-     * Abbreviates numbers so we never have 
+     * Abbreviates numbers so we never have
      * more than 4 digits
      *
      * 10000 => 10K
@@ -34,9 +34,9 @@
 
     /**
      * Capitalizes the first letter of the given string
-     * 
+     *
      * @param  {string} str String to capitalize
-     * 
+     *
      * @return {string}
      */
     DDG.capitalize = function(str) {
@@ -45,9 +45,9 @@
 
     /**
      * Capitalizes the first letter of each word in the given string
-     * 
+     *
      * @param  {string} str String to capitalize
-     * 
+     *
      * @return {string}
      */
     DDG.capitalizeWords = function(str) {
@@ -91,16 +91,16 @@
 
     /**
      * Find and execute a template
-     * 
+     *
      * Searches through DDG.templates and DDH
-     * 
+     *
      * @param  {string|function} template the template to execute
      * @param  {object}          obj      the argument to the template function
-     * 
+     *
      * @return {string}
      */
     DDG.exec_template = function(template, obj) {
-        if (!template) { 
+        if (!template) {
             throw new Error("DDG.exec_template: template is null");
         }
 
@@ -136,10 +136,10 @@
     /**
      * convenience method for rendering
      * a template and returning a jquery object.
-     * 
+     *
      * @param {string/Function} template
      * @param {Object} obj
-     * @return {$} 
+     * @return {$}
      */
     DDG.$exec_template = function(template, obj) {
         var str = DDG.exec_template(template, obj);
@@ -166,7 +166,7 @@
      * Turns milliseconds into formatted duration (i.e. 1:12:03)
      *
      * @param {number} ms
-     * 
+     *
      * @return {String}
      */
     DDG.formatDuration = function(ms) {
@@ -218,7 +218,7 @@
 
     DDG.get_favicon_url = function(sourceUrl) {
         if (!sourceUrl || typeof sourceUrl !== "string") { return; }
-        
+
         var domain, url, re, reArr, customFavicon, pixels, tokens, domainMatch, variant = '', isDarkBg,
             // we have custom icons for these domains
             faviconDomains = /wikipedia|amazon|youtube|yelp|apple|vimeo|metrolyrics|spotify|wolfram|metrolyrics|wordnik|brainyquote|soundcloud/,
@@ -232,7 +232,7 @@
         } else {
             domain = sourceUrl;
         }
-        
+
         customFavicon = domain.match(faviconDomains);
 
         if (customFavicon) {
@@ -241,7 +241,7 @@
             // if the string matches a favicon domain, remove the TLD (.com) and ensure we match on the domain name only.
             tokens = sourceUrl.split('.');
             domainMatch = (tokens.length > 1) ? (tokens[tokens.length - 2] === customFavicon) : true;
-          
+
             if (domainMatch) {
                 // check for dark background & available variant
                 if (DDG.settings && DDG.settings.updater && DDG.settings.updater.isDarkBg && darkVariants.test(customFavicon)) {
@@ -260,18 +260,20 @@
         return url;
     };
 
-    DDG.getImageProxyURL = function (url, dontEncode) {
+    DDG.getImageProxyURL = function (url, dontEncode, width, height) {
+        var options = '&f=1' + (width ? '&w='+width : '') + (height ? '&h='+height : '');
+
         if (DDG.isInternalURL(url)) { return url; }
         if (url.match(/^\/\//)) { url = window.location.protocol + url; }
         url = (dontEncode) ? url : encodeURIComponent(url);
-        return DDG.services.getURL('images') + "?u=" + url + "&f=1";
+        return DDG.services.getURL('images') + "?u=" + url + options;
     };
 
     /**
      * Provides the proper ordinal noun for a given number
-     * 
+     *
      * @param  {number} number The number you need an ordinal for
-     * 
+     *
      * @return {string}
      *
      * Example:
@@ -356,7 +358,7 @@
      * if a URL is an Internal URL. Internal URL's are a superset
      * of all relative urls (i.e. /about') and all url's likely
      * handled by js (i.e. 'javascript:;' or '#')
-     * 
+     *
      * @param {String} url
      * @return {boolean}
      */
@@ -438,7 +440,7 @@
         // document parsing method
         $tmp_p = $('<p>' + string + '</p>');
         $links = $tmp_p.find("a");
-        
+
         if ($links.length) {
             $firstLink = $($links[0]);
         } else {
@@ -459,10 +461,10 @@
         } else if (wanted === "url") {
             result = $firstLink[0].href;
         }
-        
+
         // we should be returning only text instead of html so that
         // word counts etc can be reliably run on the result
-        // and occasionally there is more than one link in 
+        // and occasionally there is more than one link in
         // the parsed text. (e.g. international wikis)
         return result;
     };
@@ -506,14 +508,14 @@
     /**
      * Scales an image/element to fit,
      * without a specific width/height region
-     * 
+     *
      * Note: This maintains the original aspect ratio
-     * 
+     *
      * @param {number} width Original width
      * @param {number} height Original height
      * @param {number} maxWidth **[optional]** Width constraint
      * @param {number} maxHeight **[optional]** Height constraint
-     * 
+     *
      * @return {Object} with height/width attributes
      */
     DDG.scaleToFit = function(width, height, maxWidth, maxHeight) {
@@ -590,7 +592,7 @@
      *
      * @param  {string} html HTML string containing tags with `src` and `href` attributes
      *
-     * @return {string} 
+     * @return {string}
      */
     DDG.strip_href = function(html) {
         if (html) {
@@ -630,7 +632,7 @@
      * Turns a URL that starts with "http" to "https", e.g., "http://duckduckgo.com" to "https://duckduckgo.com".
      *
      * @param {String} url
-     * 
+     *
      * @return {String}
      */
     DDG.toHTTPS = function(url) {
@@ -641,14 +643,14 @@
      * Turns a URL that starts with "https" to "http", e.g., "https://duckduckgo.com" to "http://duckduckgo.com".
      *
      * @param {String} url
-     * 
+     *
      * @return {String}
      */
     DDG.toHTTP = function(url) {
         return url && url.replace(/^https/, "http");
     };
 
-    // IE11 does not support URL API, we have to use the second best thing 
+    // IE11 does not support URL API, we have to use the second best thing
     var urlParser = document.createElement('a');
 
     /**
@@ -656,36 +658,36 @@
      *
      * @param {string} url
      * @param {string} key
-     * @param {string} value **[optional]** 
-     * 
+     * @param {string} value **[optional]**
+     *
      * @return {string}
      */
     DDG.addSearchParam = function(url, key, value) {
         urlParser.href = url;
-    
+
         var encodedData = encodeURIComponent(key);
 
         if (value) {
             encodedData += '=' + encodeURIComponent(value);
         }
-    
+
         if (urlParser.search.length > 0 && urlParser.search !== '?') {
             urlParser.search += '&' + encodedData;
         } else {
             urlParser.search = '?' + encodedData;
         }
-    
+
         return urlParser.href;
     };
 
     /**
      * Unescapes HTML entities so the text in which they appear can be displayed as text of DOM elements
-     * 
+     *
      * This implementation is as suggested by the MDN:
      * https://developer.mozilla.org/en-US/Add-ons/Code_snippets/HTML_to_DOM
      *
      * @param {String} html foto escape entities
-     * 
+     *
      * @return {String}
      */
     DDG.unescape = function(text) {
