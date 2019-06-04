@@ -28,7 +28,7 @@
         if (num < 1000000) { return Math.round(num / 1000) + 'K'; }
         if (num < 10000000) { return (Math.round(num / 100000) / 10) + 'M'; }
         if (num < 1000000000) { return Math.round(num / 1000000) + 'M'; }
-        if (num < 10000000000) { return Math.round(num / 100000000) + 'B'; }
+        if (num < 10000000000) { return (Math.round(num / 100000000) / 10) + 'B'; }
         return Math.round(num / 1000000000) + 'B';
     };
 
