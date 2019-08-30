@@ -50,4 +50,11 @@ describe('DDG.getImageProxyURL', function() {
             height: 200
         })).toEqual('//proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.test.com%2Fimg.jpg&f=1&w=100&h=200')
     });
+
+    it('should add nofb param', function() {
+        expect(DDG.getImageProxyURL('http://www.test.com/img.jpg', {
+            noFallback: true,
+            width: 100
+        })).toEqual('//proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.test.com%2Fimg.jpg&f=1&w=100&nofb=1')
+    });
 });

@@ -262,7 +262,10 @@
 
     DDG.getImageProxyURL = function (url, ops) {
         ops = ops || {};
-        var options = '&f=1' + (ops.width ? '&w='+ops.width : '') + (ops.height ? '&h='+ops.height : '');
+        var options = '&f=1' +
+            (ops.width ? '&w='+ops.width : '') +
+            (ops.height ? '&h='+ops.height : '') +
+            (ops.noFallback ? '&nofb=1' : '');
 
         if (DDG.isInternalURL(url)) { return url; }
         if (url.match(/^\/\//)) { url = window.location.protocol + url; }
