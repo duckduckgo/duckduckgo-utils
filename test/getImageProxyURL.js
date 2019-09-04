@@ -23,22 +23,38 @@ describe('DDG.getImageProxyURL', function() {
     });
 
     it('should not encode if dontEncode = true',function() {
-        expect(DDG.getImageProxyURL('http://www.test.com', true))
-            .toEqual('//proxy.duckduckgo.com/iu/?u=http://www.test.com&f=1')
+        expect(DDG.getImageProxyURL('http://www.test.com', {
+            dontEncode: true
+        })).toEqual('//proxy.duckduckgo.com/iu/?u=http://www.test.com&f=1')
     });
 
     it('should add w if supplied',function() {
-        expect(DDG.getImageProxyURL('http://www.test.com/img.jpg', false, 200))
-            .toEqual('//proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.test.com%2Fimg.jpg&f=1&w=200')
+        expect(DDG.getImageProxyURL('http://www.test.com/img.jpg', {
+            dontEncode: false,
+            width: 200
+        })).toEqual('//proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.test.com%2Fimg.jpg&f=1&w=200')
     });
 
     it('should add h if supplied',function() {
-        expect(DDG.getImageProxyURL('http://www.test.com/img.jpg', false, false, 200))
-            .toEqual('//proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.test.com%2Fimg.jpg&f=1&h=200')
+        expect(DDG.getImageProxyURL('http://www.test.com/img.jpg', {
+            dontEncode: false,
+            width: false,
+            height: 200
+        })).toEqual('//proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.test.com%2Fimg.jpg&f=1&h=200')
     });
 
     it('should add w & h if supplied',function() {
-        expect(DDG.getImageProxyURL('http://www.test.com/img.jpg', false, 100, 200))
-            .toEqual('//proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.test.com%2Fimg.jpg&f=1&w=100&h=200')
+        expect(DDG.getImageProxyURL('http://www.test.com/img.jpg', {
+            dontEncode: false,
+            width: 100,
+            height: 200
+        })).toEqual('//proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.test.com%2Fimg.jpg&f=1&w=100&h=200')
+    });
+
+    it('should add nofb param', function() {
+        expect(DDG.getImageProxyURL('http://www.test.com/img.jpg', {
+            noFallback: true,
+            width: 100
+        })).toEqual('//proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.test.com%2Fimg.jpg&f=1&w=100&nofb=1')
     });
 });
