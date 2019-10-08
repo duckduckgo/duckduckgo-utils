@@ -280,11 +280,18 @@
      *
      * `DDG.getOrdinal(456)` -> `'456th'`
      */
-    DDG.getOrdinal = function(n){
-        if (!n) { return ''; } // no '0th', no 'undefinedth'
-        var s=["th","st","nd","rd"],
-        v=n%100;
-        return n+(s[(v-20)%10]||s[v]||s[0]);
+    DDG.getOrdinal = function(number) {
+        if (!number) { return ''; } // no '0th', no 'undefinedth'
+        switch (number % 10) {
+            case 1:
+                return number + 'st';
+            case 2:
+                return number + 'nd';
+            case 3:
+                return number + 'rd';
+            default:
+                return number + 'th';
+        }
     };
 
     /**
