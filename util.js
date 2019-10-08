@@ -252,12 +252,8 @@
                 url = '/assets/icons/favicons/'+customFavicon+variant+pixels+'.png';
             }
         }
-
-        if (!url ) {
-            url = DDG.services.getURL('icons') + domain + ".ico";
-        }
-
-        return url;
+        
+        return url || DDG.services.getURL('icons') + domain + ".ico";
     };
 
     DDG.getImageProxyURL = function (url, ops) {
