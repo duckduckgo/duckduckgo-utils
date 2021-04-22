@@ -57,4 +57,10 @@ describe('DDG.getImageProxyURL', function() {
             width: 100
         })).toEqual('//proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.test.com%2Fimg.jpg&f=1&w=100&nofb=1')
     });
+
+    it('should handle the noAutoPadding option', function() {
+        expect(DDG.getImageProxyURL('http://www.example.com/img.jpg', {
+            noAutoPadding: true
+        })).toEqual('//proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.example.com%2Fimg.jpg&f=1&p=0')
+    })
 });

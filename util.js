@@ -265,7 +265,8 @@
         var options = '&f=1' +
             (ops.width ? '&w='+ops.width : '') +
             (ops.height ? '&h='+ops.height : '') +
-            (ops.noFallback ? '&nofb=1' : '');
+            (ops.noFallback ? '&nofb=1' : '') +
+            (ops.noAutoPadding ? '&p=0' : ''); // see https://docs.microsoft.com/en-us/azure/cognitive-services/bing-web-search/resize-and-crop-thumbnails
 
         if (DDG.isInternalURL(url)) { return url; }
         if (url.match(/^\/\//)) { url = window.location.protocol + url; }
