@@ -51,6 +51,14 @@ describe('DDG.getImageProxyURL', function() {
         })).toEqual('//proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.test.com%2Fimg.jpg&f=1&w=100&h=200')
     });
 
+    it('should add ipt (token) & ipo (origin) if supplied',function() {
+        expect(DDG.getImageProxyURL('http://www.test.com/img.jpg', {
+            dontEncode: false,
+            token: '89603aab4a8f4de9c331184cb3d855871fa8430a3bf725c70c04766828598f16',
+            origin: 'images',
+        })).toEqual('//proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.test.com%2Fimg.jpg&ipt=89603aab4a8f4de9c331184cb3d855871fa8430a3bf725c70c04766828598f16&ipo=images')
+    });
+
     it('should add nofb param', function() {
         expect(DDG.getImageProxyURL('http://www.test.com/img.jpg', {
             noFallback: true,
