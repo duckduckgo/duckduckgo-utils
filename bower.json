@@ -1,16 +1,10 @@
 {
   "name": "duckduckgo-utils",
-  "version": "1.3.2",
+  "version": "1.5.0",
   "description": "Util functions used by DuckDuckGo",
   "main": "util.js",
   "license": "Apache2",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
+  "ignore": ["**/.*", "node_modules", "bower_components", "test", "tests"],
   "devDependencies": {
     "jquery": "1.11.3"
   }
