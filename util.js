@@ -219,7 +219,7 @@
     DDG.get_favicon_url = function(sourceUrl) {
         if (!sourceUrl || typeof sourceUrl !== "string") { return; }
 
-        var domain, url, re, reArr, customFavicon, pixels, tokens, domainMatch, variant = '', isDarkBg,
+        var domain, url, re, reArr, customFavicon, pixels, tokens, domainMatch, variant = '',
             // we have custom icons for these domains
             faviconDomains = /wikipedia|amazon|youtube|yelp|apple|vimeo|metrolyrics|spotify|wolfram|metrolyrics|wordnik|brainyquote|soundcloud/,
             darkVariants = /wikipedia/; // icons sets that have a version for dark backgrounds
