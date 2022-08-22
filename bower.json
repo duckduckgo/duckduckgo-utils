@@ -1,6 +1,6 @@
 {
   "name": "duckduckgo-utils",
-  "version": "1.4.0",
+  "version": "1.3.2",
   "description": "Util functions used by DuckDuckGo",
   "main": "util.js",
   "license": "Apache2",
