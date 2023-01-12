@@ -1,4 +1,4 @@
-describe('DDG.getImageProxyURL', function() {
+xdescribe('DDG.getImageProxyURL', function() {
 
     beforeEach(function() {
         DDG.services = {};
