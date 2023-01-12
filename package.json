@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": "jasmine"
+    "test": "jasmine-browser-runner runSpecs"
   },
   "devDependencies": {
     "grunt": "^1.3.0",
