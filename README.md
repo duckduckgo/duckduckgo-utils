@@ -1,4 +1,8 @@
 # duckduckgo-utils
 JS utility methods used by DuckDuckGo
 
-[![Build Status](https://travis-ci.org/duckduckgo/duckduckgo-utils.svg)](https://travis-ci.org/duckduckgo/duckduckgo-utils)
+# Testing
+
+`npm test`
+
+Tests use [jasmine-browser-runner](https://github.com/jasmine/jasmine-browser-runner) to run util.js and tests in headless Chrome.

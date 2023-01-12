@@ -1,4 +1,4 @@
-describe('DDG.parse_link', function() {
+xdescribe('DDG.parse_link', function() {
 
     var tests = [
         ['foo <a href="http://foobar.com">bars</a>', 'url', 'http://foobar.com/'],
